@@ -115,7 +115,7 @@ The average error in each metric is:
 
 The loss by pixels looks like:
 
-![image](https://user-images.githubusercontent.com/21147581/167028138-3fdad1d1-b44f-420e-8589-42dcee537e2e.png)
+![image](https://user-images.githubusercontent.com/21147581/167028348-ed307e4c-d85b-41ac-a1f2-80b97a31df0f.png)
 
 The error is maximized on the west coast. There are two reasons why this could be. 
 
