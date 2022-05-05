@@ -54,11 +54,7 @@ Since predicting above the bodies of water would be difficult, becasue there are
 
 ## Baseline Model
 
-The baseline model chosen for this project predicts the weather by guessing there will be no change from today to tomorrow. This model is simple, fast, and relatively accurate as the weather does not, usually, change drastically from one day to another. Mathematically:
-
-$\hat{y}_t=y_{t-1}$
-
-Where $\hat{y}_t$ is the weather prediction for time $t$ and $y_t$ is the actual weather at time $t$.
+The baseline model chosen for this project predicts the weather by guessing there will be no change from today to tomorrow. This model is simple, fast, and relatively accurate as the weather does not, usually, change drastically from one day to another.
 
 ![image](https://user-images.githubusercontent.com/21147581/167027929-1a5e559f-79a8-40f0-8055-6a890aba0d28.png)
 
