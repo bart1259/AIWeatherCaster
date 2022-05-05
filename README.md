@@ -4,6 +4,9 @@ Many different varieties of models are used today to predict the weather. No mod
 
 The approach used is similar to frame prediction. Every day's weather is encoded as an image and then a convolution neural network aims to predict the next day's weather from the previous day's information. Like a color picture has RGB channels, each daily image has a channel for each weather metric (temperature, humidity, etc.) it represents.
 
+![image](https://user-images.githubusercontent.com/21147581/167031338-227dce7c-4c8d-4121-908c-a96136c6056d.png)
+
+
 ## Markovian Dependence
 
 For this model to work, the data must have markovian dependence. Markovian dependence means that the future can be predicted from the "present" without any knowledge of the past.
