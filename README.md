@@ -129,4 +129,4 @@ All the bodies of water are outlined in a higher loss. This could be due to bodi
 
 # Conclusion
 
-In conclusion, a model that is 62.9 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.
+In conclusion, the model that is 62.9 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.
