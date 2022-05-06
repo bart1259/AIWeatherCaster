@@ -98,7 +98,7 @@ def get_model():
     except:
         singleton_model = create_model()
         singleton_model.build([None, 48, 116, 24])
-        singleton_model.load_weights("./res/prediction_model.hdf5")
+        singleton_model.load_weights("./res/prediction_model.h5")
         return singleton_model
 
 # Creates the model
