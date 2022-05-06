@@ -1,4 +1,46 @@
-# Introduction
+# AI Weathercaster
+
+This is the final repo for my Independent Study project for the Spring 2022 quarter at MSOE. The goal was to write an A.I. forecasting model that predicts the weather in a similar way to how frames of a video predicted. As a part of the project, a frontend was created to display the A.I. weather predictions.
+
+## Project Structure
+
+- `/training_data` contains all the daily snapshots from 1990 to 2021
+- `/server` contains the code for the webserver
+
+
+# Server setup
+
+## Install dependencies
+
+Make a new virtual enviornment in the `/server` folder by running
+
+`py -m venv ./.env`
+
+Activate the virtual enviornment with
+
+`source ./.env/Scripts/activate`
+
+Install all requirments from the `requirments.txt` file
+
+`pip install -r requirements.txt`
+
+## Adding an API Key
+
+The server retrieves up to date information, daily, from [weatherapi.com](weatherapi.com), so an API key is required. An API Key can be retrived from weatherapi.com for free. In the `/server/backendserver` folder, add a `secrets.py` file that contains the following text:
+
+`API_KEY="<Your API Key>"`
+
+## Running the Server
+
+To run the server, in a command line in the `/server` folder, run:
+
+`py run.py`
+
+The server will download all the necessary data (might take up to 40 minutes) and make the necessary predictions. All of these will be cached in the `/server/data` folder so this step will only need to be run once per day.
+
+# Final Report
+
+## Introduction
 
 Many different varieties of models are used today to predict the weather. No model is perfect, and often human intervention is required to determine which model would be best in the current situation. With the emergence of artificial intelligence and deep learning, a new tier of unsupervised models can be used for this task. This report describes an effort to predict daily weather across the continental United States. 
 
@@ -7,23 +49,23 @@ The approach used is similar to frame prediction. Every day's weather is encoded
 ![image](https://user-images.githubusercontent.com/21147581/167031338-227dce7c-4c8d-4121-908c-a96136c6056d.png)
 
 
-## Markovian Dependence
+### Markovian Dependence
 
 For this model to work, the data must have markovian dependence. Markovian dependence means that the future can be predicted from the "present" without any knowledge of the past.
 
-# Input
+## Input
 
-## The dataset
+### The dataset
 
 The National Center for Environmental Information (NCEI) hosts the Local Climatology Dataset (LCD) which provides global hourly weather reports for hundreds of stations and daily "Summaries of the Day" (the latter part proved to not be true for every weather station). The weather reports contained information about the temperature, humidity, pressure, wind, visibility, sky conditions, and precipitation.
 
-## Data Pre-processing
+### Data Pre-processing
 
 The dataset contained many errors such as stations not recording data for months, stations recording some metrics and not others, and stations giving non-believable data (On April 17th, 2010, at 6:45 AM at Big Spring Mcmahon-Wrinkle-Bpg Airport, a 143-degree dry bulb temperature was reported which beats the world record highest air temperature by 9 degrees). Due to the difficulty of figuring out if the data makes logical sense or not, all the data was left in.
 
 Since the dataset contained global information, only weather stations that were within 1-degree latitude or longitude of the United State's border were considered processed.
 
-## Aggregation
+### Aggregation
 
 The hourly data from these weather stations were then aggregated into: 
 
@@ -45,17 +87,17 @@ This daily weather data could then be interpolated between the stations to fill 
 
 In total, 11,688 images of daily weather data were generated (1990 to 2021) for training.
 
-## Normalization
+### Normalization
 
 The eight channels of our image must be normalized for the network to unbiasedly predict our data. The temperature channels are normalized from 0 to 1 with 0 and 1 being mapped to the minimum temperature and the maximum temperature, respectively. The pressure, humidity, wind x-direction, wind y-direction, and wind speed channels were normalized separately from 0 to 1.
 
-## Masking
+### Masking
 
-Since predicting above the bodies of water would be difficult, becasue there are few weather stations in the oceans and great lakes, a mask was constructed to zero any point not above land.
+Since predicting above the bodies of water would be difficult, as there are few weather stations in the oceans and great lakes, a mask was constructed to zero any point not above land.
 
-# The Model
+## The Model
 
-## Baseline Model
+### Baseline Model
 
 The baseline model chosen for this project predicts the weather by guessing there will be no change from today to tomorrow. This model is simple, fast, and relatively accurate as the weather does not, usually, change drastically from one day to another.
 
@@ -63,7 +105,7 @@ The baseline model chosen for this project predicts the weather by guessing ther
 
 The baseline model had a mean squared error loss of 0.2334
 
-## Model Architecture
+### Model Architecture
 
 4 Different model architectures were tried: 
 - Simple convolutional neural network (CNN)
@@ -81,7 +123,7 @@ A hyperband search was conducted to find the optimal kernel size and filter size
 
 ![image](https://user-images.githubusercontent.com/21147581/167028078-d4fc3d3f-9645-4a5b-82f6-2e01018c05e9.png)
 
-## Hyperparameters
+### Hyperparameters
 
 The hyperparameters were also optimized with the hyper band search. The ideal hyperparameters were found to be:
 
@@ -89,11 +131,11 @@ The hyperparameters were also optimized with the hyper band search. The ideal hy
 - Batch Size: 16
 - Epochs: Until validation accuracy stopped improving (about 60 epochs)
 
-## Training Time
+### Training Time
 
 On an Nvidia Tesla T4, one epoch took around 19 minutes to complete so in total the model took around 19 hours to train.
 
-# Analysis
+## Analysis
 
 The final model had a loss of 0.0086954 which is 62.9% better than the baseline.
 
@@ -126,6 +168,6 @@ Another reason the west coast performs so poorly is the wind. The wind in the we
 
 All the bodies of water are outlined in a higher loss. This could be due to bodies of water affecting the weather in unpredictable ways. Alternatively, the A.I. must predict the bodies of water as zeros, which means the kernels in the CNNs might blur some of those zeros to leak out into the land portions.
 
-# Conclusion
+## Conclusion
 
 In conclusion, the model is 62.9 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.

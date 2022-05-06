@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>The AI Weathercaster</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="page-wrapper">
+            <div class="contents">
+                <h1 class="title">The AI Weathercaster</h1>
+                <div class="input-group mb-3">
+                    <input id="forecast-location-input" type="text" list="cities" class="form-control" placeholder="City: 'Milwaukee, Wisconsin' or Lattitude and Longitude: '(42.18, -88.33)'" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="get-forecast" class="btn btn-primary" type="button">Get Weather</button>
+                    </div>
+                    <datalist id="cities">
+
+                    </datalist>
+                </div>
+                <div id="error-message"class="alert alert-danger p-2" style="width: 100%;" role="alert">
+                    This is a primary alert—check it out!
+                </div>
+                <div id="forecast" class="forecast-wrapper">
+                   
+                </div>
+                
+                <div class="stack">
+                    <canvas id="forecast-map" class="forecast-map"></canvas>
+                    <canvas id="overlay-canvas" class="overlay-canvas"></canvas>
+                </div>
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" style="width: 100%;">
+                    <button type="button" class="btn btn-primary metric-button">Max Temperature</button>
+                    <button type="button" class="btn btn-primary metric-button">Min Temperature</button>
+                    <button type="button" class="btn btn-primary metric-button">Avg Temperature</button>
+                    <button type="button" class="btn btn-primary metric-button">Humidity</button>
+                    <button type="button" class="btn btn-primary metric-button">Air Pressure</button>
+                    <button type="button" class="btn btn-primary metric-button">Wind X Direction</button>
+                    <button type="button" class="btn btn-primary metric-button">Wind Y Direction</button>
+                    <button type="button" class="btn btn-primary metric-button">Wind Speed</button>
+                </div>
+                <div id="date-buttons" class="btn-group btn-group-sm" role="group" aria-label="Basic example" style="width: 100%; margin-top: 5px;">
+                </div>
+                <p>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
+            </div>
+            <div class="loading-screen">
+                <p class="loading-text">Loading...</p>
+                <p class="loading-subtext">Retriving Forecast</p>
+            </div>
+        </div>
+
+        <style>
+            .page-wrapper {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .contents {
+                width: 900px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .title {
+                font-size: 50px;
+            }
+
+            .forecast-table tr td:first-child + td{
+                text-align: right;
+            }
+
+            .forecast-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .metric-button:not(:first-child) {
+                border-left: 1px solid rgb(43, 78, 143);
+
+            }
+
+            .date-button:not(:first-child) {
+                border-left: 1px solid rgb(43, 78, 143);
+            }
+            
+            .stack {
+                margin: 20px;
+                height: 384px;
+                width: 928px;
+                position: relative;
+            }
+
+            .forecast-map {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .overlay-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 6;
+            }
+
+            .loading-screen {
+                background-color: rgb(22, 19, 66);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .loading-text {
+                color: white;
+                font-size: 50px;
+                margin: 0px;
+            }
+
+            .loading-subtext {
+                color: white;
+                font-size: 20px;
+            }
+
+        </style>
+    </body>
+</html>

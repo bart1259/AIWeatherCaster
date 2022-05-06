@@ -1,0 +1,5 @@
+/backendserver/secrets.py
+/backendserver/__pycache__
+/data
+/.env
+pyvenv.cfg
