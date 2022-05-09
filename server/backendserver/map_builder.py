@@ -30,6 +30,7 @@ def get_image(date):
         return np.load(file_path)
 
     print(f"Downloading data for {date}")
+    os.makedirs("./data/cached_requests/", exist_ok=True)
     image = create_image(date)
     os.makedirs("./data/truth/", exist_ok=True) 
     np.save(file_path, image)
@@ -87,7 +88,6 @@ def get_station_data(location, date):
     row.append(day_summary_df["humidity"].mean())
     row.append(day_summary_df["pressure_in"].mean())
     row += calculate_average_wind(day_summary_df["wind_degree"].values, day_summary_df["wind_mph"].values)
-    
 
     return row
 
@@ -95,12 +95,18 @@ def get_station_data(location, date):
 # @param location [tuple] the latitude and longitude to request the data from
 # @param date [string] date in the format year-month-day 2020-05-12
 def make_request(location, date):
-    content = (requests.get(f"http://api.weatherapi.com/v1/history.json?key={API_KEY}&q={location[0]},{location[1]}&dt={date}").content).decode("utf-8") 
-    # content = open(f"./cache/{date}_{location[0]}_{location[1]}.txt", "r").read()
-    # text_file.write(content)
-    # text_file.close()
-    return content
-
+    cache_file_name = f"./data/cached_requests/{date}_{round(location[0], 4)}_{round(location[1], 4)}.txt"
+    if exists(cache_file_name):
+        file = open(cache_file_name, "r")
+        content = file.read()
+        file.close()
+        return content
+    else:
+        content = (requests.get(f"http://api.weatherapi.com/v1/history.json?key={API_KEY}&q={location[0]},{location[1]}&dt={date}").content).decode("utf-8") 
+        file = open(cache_file_name, "w")
+        file.write(content)
+        file.close()
+        return content
 
 
 # print(get_image("2022-04-26").shape)

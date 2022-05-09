@@ -4,9 +4,9 @@ This is the final repo for my 10 week long Independent Study for the Spring 2022
 
 ## Project Structure
 
+- `/data_collecter` contains scripts to generate the training data
 - `/training_data` contains all the daily snapshots from 1990 to 2021
 - `/server` contains the code for the webserver
-
 
 # Server setup
 
@@ -37,6 +37,34 @@ To run the server, in a command line in the `/server` folder, run:
 `py run.py`
 
 The server will download all the necessary data (might take up to 40 minutes) and make the necessary predictions. All of these will be cached in the `/server/data` folder so this step will only need to be run once per day.
+
+# Generating the Training data
+
+The `/data_collecter` folder contains scripts on processing the data incrementally. The scripts do as follows:
+
+- `mask_gen.py`: Generates and saves a land mask for the selected region.
+- `downloader.py`: Downloads the necessary yearly data
+- `extractor.py`: Extracts the station data and removes stations outside of the region in question.
+- `aggregator.py`: Aggregates the stations' hourly data into daily summaries
+- `image_generator.py`: Interpolates the aggregated data into daily images.
+- `blurer.py`: Blurs the final image
+
+To run the entire pipeline, the `_gather_data.sh` script can be invoked.
+
+`sh _gather_data.sh`
+
+The collector can be configured through the `config.py` file to select data from differnt time periods and locations. For example, the following config will grab the weather data from 1960-1980 of South America.
+
+```python
+START_YEAR = 1980 # Inclusive
+END_YEAR = 1960   # Inclusive
+
+# Boundaries
+WEST_LON = -90
+EAST_LON = -30
+NORTH_LAT = 15
+SOUTH_LAT = -80
+```
 
 # Final Report
 
@@ -129,11 +157,11 @@ The hyperparameters were also optimized with the hyper band search. The ideal hy
 
 - Learning Rate: 0.0001
 - Batch Size: 16
-- Epochs: Until validation accuracy stopped improving (about 60 epochs)
+- Epochs: Until validation accuracy stopped improving (about 40 epochs)
 
 ### Training Time
 
-On an Nvidia Tesla T4, one epoch took around 19 minutes to complete so in total the model took around 19 hours to train.
+On an Nvidia Tesla T4, one epoch took around 19 minutes to complete so in total the model took around 12 hours to train.
 
 ## Analysis
 
