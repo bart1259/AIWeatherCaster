@@ -70,7 +70,7 @@ SOUTH_LAT = -80
 
 ## Introduction
 
-Many different varieties of models are used today to predict the weather. No model is perfect, and often human intervention is required to determine which model would be best in the current situation. With the emergence of artificial intelligence and deep learning, a new tier of unsupervised models can be used for this task. This report describes an effort to predict daily weather across the continental United States. 
+Many different varieties of models are used today to predict the weather. No model is perfect, and often human intervention is required to determine which model would be best in the current situation. With the emergence of artificial intelligence and deep learning, a new tier of unsupervised models can be used for this task. This report describes an effort to predict daily weather across the continental United States using Convolutional Neural Networks. 
 
 The approach used is similar to frame prediction. Every day's weather is encoded as an image and then a convolution neural network aims to predict the next day's weather from the previous day's information. Like a color picture has RGB channels, each daily image has a channel for each weather metric (temperature, humidity, etc.) it represents.
 
