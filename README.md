@@ -63,8 +63,11 @@ END_YEAR = 1960   # Inclusive
 WEST_LON = -90
 EAST_LON = -30
 NORTH_LAT = 15
-SOUTH_LAT = -80
+SOUTH_LAT = -70
 ```
+
+![image](https://user-images.githubusercontent.com/21147581/167346724-d08955f9-a407-48de-a292-15626b5c8e43.png)
+
 
 # Final Report
 
