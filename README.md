@@ -2,9 +2,12 @@
 
 This is the final repo for my 10 week long Independent Study for the Spring 2022 quarter at MSOE. The goal was to write an A.I. forecasting model that predicts the weather in a similar way to how frames of a video predicted. As a part of the project, a frontend was created to display the A.I. weather predictions.
 
+< Insert picture of frontend >
+
 ## Project Structure
 
 - `/data_collecter` contains scripts to generate the training data
+- `/training` add this
 - `/training_data` contains all the daily snapshots from 1990 to 2021
 - `/server` contains the code for the webserver
 
@@ -168,7 +171,7 @@ On an Nvidia Tesla T4, one epoch took around 19 minutes to complete so in total 
 
 ## Analysis
 
-The final model had a loss of 0.0086954 which is 62.9% better than the baseline.
+The final model had a loss of 0.010403 which is 62.9% better than the baseline.
 
 Looking at the error each metric can be misleading as only about 69% of the region is predictable, above land. Assuming that the model can perfectly predict the oceans, the error above the land would be much higher. We can multiply each error by a factor of 1.45 to account for this.
 
@@ -176,18 +179,18 @@ The average error in each metric is:
 
 |Metric|Error|Adjusted Error|
 |------|-----|--------------|
-|Max Temp| 4.7567 | 6.8972 |
-|Min Temp| 4.2554 | 6.1704 |
-|Avg Temp| 3.7178 | 5.3908 |
-|Humidity| 6.6639 | 9.6626 |
-|Pressure| 0.10267 | 0.14887 |
-|Wind X Dir| 0.3459 | 0.5016 |
-|Wind Y Dir| 0.3644 | 0.5285 |
-|Wind Speed| 2.4790 | 3.5946 |
+|Max Temp| 5.3125 | 7.7031 |
+|Min Temp| 5.0211 | 7.2805 |
+|Avg Temp| 4.4870 | 6.5062 |
+|Humidity| 6.8132 | 9.8791 |
+|Pressure| 0.128156 | 0.18582 |
+|Wind X Dir| 0.3686 | 0.5344 |
+|Wind Y Dir| 0.4025 | 0.5836 |
+|Wind Speed| 2.5799 | 3.7408 |
 
 The loss by pixels looks like:
 
-![image](https://user-images.githubusercontent.com/21147581/167028348-ed307e4c-d85b-41ac-a1f2-80b97a31df0f.png)
+< LOSS BY PIXEL >
 
 The error is maximized on the west coast. There are two reasons why this could be. 
 
@@ -196,8 +199,6 @@ The first is mountains. The western United States has a mountainous environment 
 ![image](https://user-images.githubusercontent.com/21147581/167028234-c9f44bce-5497-49b1-8403-c4379a048ace.png)
 
 Another reason the west coast performs so poorly is the wind. The wind in the west coast comes from the west. There is no data west of the west coast, so the A.I. cannot use that information to make an accurate prediction.
-
-All the bodies of water are outlined in a higher loss. This could be due to bodies of water affecting the weather in unpredictable ways. Alternatively, the A.I. must predict the bodies of water as zeros, which means the kernels in the CNNs might blur some of those zeros to leak out into the land portions.
 
 ## Conclusion
 
