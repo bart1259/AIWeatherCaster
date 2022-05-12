@@ -22,7 +22,6 @@ from .utils import filter_nan_gaussian_conserving, coord_to_index, calculate_ave
 # Retrieves a 48 x 116 x 8 image for that specified date. If the image has not previously been
 # gotten, then the image will be generated
 # @param date [string] The date of the requested image
-# @param
 def get_image(date):
     file_path = f"./data/truth/{date}.npy"
 

@@ -84,7 +84,7 @@ def filter_nan_gaussian_conserving(arr, sigma):
 
     return gauss
 
-
+# Userd to convert numpy to JSON
 def numpy_json_serializer(obj):
     if type(obj).__module__ == np.__name__:
         if isinstance(obj, np.ndarray):

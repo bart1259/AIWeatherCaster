@@ -1,4 +1,5 @@
 /backendserver/secrets.py
+/res/prediction_model.h5
 /data
 /.env
 pyvenv.cfg
