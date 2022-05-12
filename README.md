@@ -2,7 +2,7 @@
 
 This is the final repo for my 10 week long Independent Study for the Spring 2022 quarter at MSOE. The goal was to write an A.I. forecasting model that predicts the weather in a similar way to how frames of a video predicted. As a part of the project, a frontend was created to display the A.I. weather predictions.
 
-< Insert picture of frontend >
+![image](https://user-images.githubusercontent.com/21147581/168178529-277787eb-ca92-4bd1-a3b3-01df2a443aca.png)
 
 ## Project Structure
 
