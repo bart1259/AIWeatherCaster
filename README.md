@@ -131,7 +131,10 @@ Since predicting above the bodies of water would be difficult, as there are few 
 
 ### Positional Embedding
 
-The kernel in a convolutional neural network have no idea where they are executing, so a positional encoding is fed into the network. The encoding, similar to that used in a Transformer Model, 
+The kernel in a convolutional neural network have no idea where they are executing, so a positional encoding is fed into the network. The encoding, similar to that used in a transformer model, consists of varying periods of sine and cosine waves which together can uniquely identify each location.
+
+![image](https://user-images.githubusercontent.com/21147581/168312875-ac137163-0f3a-466c-b2b0-938b4a0b2113.png)
+
 
 ## The Model
 
