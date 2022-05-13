@@ -153,9 +153,23 @@ Below is a summary of the accuracies and time to train each model with their res
 
 The last option, the CNN with channels that represented metrics and time, had the best results and trained the quickly. 3 days of metric data were stacked to form the input of the network.
 
+![image](https://user-images.githubusercontent.com/21147581/168300793-b62bc9ef-abce-478d-8bc3-a0a59e800ee1.png)
+
 A hyperband search was conducted to find the optimal kernel size and filter size. The following was found to be optimal:
 
-![image](https://user-images.githubusercontent.com/21147581/167028078-d4fc3d3f-9645-4a5b-82f6-2e01018c05e9.png)
+```python
+    model = Sequential()
+    model.add(Conv2D(256, (1, 35), activation='sigmoid', padding="same"))
+    model.add(Conv2D(256, (35, 1), activation='sigmoid', padding="same"))
+    model.add(Conv2D(384, (1, 19),  activation='sigmoid', padding="same"))
+    model.add(Conv2D(384, (19, 1),  activation='sigmoid', padding="same"))
+    model.add(Conv2D(512, (1, 9),  activation='sigmoid', padding="same"))
+    model.add(Conv2D(512, (9, 1),  activation='sigmoid', padding="same"))
+    model.add(Conv2D(512, (3, 3),  activation='sigmoid', padding="same"))
+    model.add(Conv2D(8,   (1, 1),  activation=None, padding="same"))
+
+```
+
 
 ### Hyperparameters
 
@@ -204,4 +218,4 @@ All the bodies of water are outlined in a higher loss. This could be due to bodi
 
 ## Conclusion
 
-In conclusion, the model is 60.8 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.
+In conclusion, the model is 60.8 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size, speed, and simplicity, it fairs pretty well.
