@@ -5,6 +5,8 @@ import os
 import math
 import glob
 
+# Split the file into mulitple chunks.
+# Only used 
 def split(file_name):
     file = open(file_name, "rb")
     file_size = os.path.getsize(file_name)
@@ -25,6 +27,7 @@ def split(file_name):
 
     file.close()
 
+# Combines all the files in a folder into one file
 def unsplit(file_name):
     chunk_paths = glob.glob("./res/model_chunks/model*.h5")
 
@@ -40,3 +43,5 @@ def unsplit(file_name):
     f = open(file_name, "wb")
     f.write(final_model)
     f.close()
+
+# split("model_32.h5")

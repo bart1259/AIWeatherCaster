@@ -161,6 +161,7 @@ def unnormalize(data):
     
     return data
 
+# Generates the appropriate positonal encoding
 def gen_positional_encoding(height, width, vec_count = (7,4)):
     
     embedings = []

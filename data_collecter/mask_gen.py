@@ -1,3 +1,6 @@
+# Generates a mask of land and water
+# 0s represent oceans and 1s represent land
+
 from mpl_toolkits.basemap import Basemap
 import numpy as np
 import pandas as pd
@@ -6,8 +9,6 @@ import matplotlib.pyplot as plt
 from config import *
 
 if __name__ == "__main__":
-
-
     height = (NORTH_LAT - SOUTH_LAT) * PIXELS_PER_DEGREE
     width = (EAST_LON - WEST_LON) * PIXELS_PER_DEGREE
     print(f"Generating mask of size {width}px wide x {height} tall...")
