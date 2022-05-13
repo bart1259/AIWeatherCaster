@@ -149,7 +149,7 @@ The baseline model had a mean squared error loss of 0.2334
 
 Below is a summary of the accuracies and time to train each model with their respective better than baseline percentages.
 
-![image](https://user-images.githubusercontent.com/21147581/167028032-94bdf138-0320-47e5-9f9d-01564feb7c74.png)
+![image](https://user-images.githubusercontent.com/21147581/168295595-3b5b5db3-3337-4f4e-91a2-fa6d0bd40278.png)
 
 The last option, the CNN with channels that represented metrics and time, had the best results and trained the quickly. 3 days of metric data were stacked to form the input of the network.
 
@@ -171,7 +171,7 @@ On an Nvidia Tesla T4, one epoch took around 19 minutes to complete so in total 
 
 ## Analysis
 
-The final model had a loss of 0.0086954 which is 62.9% better than the baseline.
+The final model had a loss of 0.009154 which is 60.8% better than the baseline.
 
 Looking at the error each metric can be misleading as only about 69% of the region is predictable, above land. Assuming that the model can perfectly predict the oceans, the error above the land would be much higher. We can multiply each error by a factor of 1.45 to account for this.
 
@@ -190,7 +190,7 @@ The average error in each metric is:
 
 The loss by pixels looks like:
 
-![image](https://user-images.githubusercontent.com/21147581/167028348-ed307e4c-d85b-41ac-a1f2-80b97a31df0f.png)
+![image](https://user-images.githubusercontent.com/21147581/168299291-b206a5c9-8826-41e0-be1e-63439cecae3c.png)
 
 The error is maximized on the west coast. There are two reasons why this could be. 
 
@@ -198,10 +198,10 @@ The first is mountains. The western United States has a mountainous environment 
 
 ![image](https://user-images.githubusercontent.com/21147581/167028234-c9f44bce-5497-49b1-8403-c4379a048ace.png)
 
-Another reason the west coast performs so poorly is the wind. The wind in the west coast comes from the west. There is no data west of the west coast, so the A.I. cannot use that information to make an accurate prediction.
+Another reason the west coast performs so poorly is the wind. The wind in the west coast comes from the pacific ocean. There is no data west of the west coast, so the A.I. cannot use that information to make accurate predictions.
 
-All the bodies of water are outlined in a higher loss. This could be due to bodies of water affecting the weather in unpredictable ways. Alternatively, the A.I. must predict the bodies of water as zeros, which means the kernels in the CNNs might blur some of those zeros to leak out into the land portions.
+All the bodies of water are outlined in a higher loss. This could be due to bodies of water affecting the weather in unpredictable ways.
 
 ## Conclusion
 
-In conclusion, the model is 62.9 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.
+In conclusion, the model is 60.8 percent better than the baseline model. Although the model is nowhere near as good as modern models, for the size and simplicity, it fairs pretty well.
