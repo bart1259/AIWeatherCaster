@@ -7,25 +7,25 @@ This is the final repo for my 10 week long Independent Study for the Spring 2022
 ## Project Structure
 
 - `/data_collecter` contains scripts to generate the training data
-- `/training` add this
+- `/training` scripts to train the network
 - `/training_data` contains all the daily snapshots from 1990 to 2021
 - `/server` contains the code for the webserver
-
-# Server setup
 
 ## Install dependencies
 
 Make a new virtual enviornment in the `/server` folder by running
 
-`py -m venv ./.env`
+`py -m venv ./.venv`
 
 Activate the virtual enviornment with
 
-`source ./.env/Scripts/activate`
+`source ./.venv/Scripts/activate`
 
 Install all requirments from the `requirments.txt` file
 
 `pip install -r requirements.txt`
+
+# Server setup
 
 ## Adding an API Key
 
@@ -128,6 +128,10 @@ The eight channels of our image must be normalized for the network to unbiasedly
 ### Masking
 
 Since predicting above the bodies of water would be difficult, as there are few weather stations in the oceans and great lakes, a mask was constructed to zero any point not above land.
+
+### Positional Embedding
+
+The kernel in a convolutional neural network have no idea where they are executing, so a positional encoding is fed into the network. The encoding, similar to that used in a Transformer Model, 
 
 ## The Model
 
